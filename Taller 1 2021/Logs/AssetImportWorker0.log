@@ -1,0 +1,97 @@
+Using pre-set license
+Built from '2020.3/staging' branch; Version is '2020.3.10f1 (297d780c91bc) revision 2719096'; Using compiler version '192528614'; Build Type 'Release'
+OS: 'Windows 10 Home; OS build 19043.1052; Version 2009; 64bit' Language: 'es' Physical Memory: 16341 MB
+BatchMode: 1, IsHumanControllingUs: 0, StartBugReporterOnCrash: 0, Is64bit: 1, IsPro: 0
+
+ COMMAND LINE ARGUMENTS:
+C:\Unity Editors\2020.3.10f1\Editor\Unity.exe
+-adb2
+-batchMode
+-noUpm
+-name
+AssetImportWorker0
+-projectPath
+C:/Github Desktop/Taller-2021-I/Taller 1 2021
+-logFile
+Logs/AssetImportWorker0.log
+-srvPort
+55218
+Successfully changed project path to: C:/Github Desktop/Taller-2021-I/Taller 1 2021
+C:/Github Desktop/Taller-2021-I/Taller 1 2021
+Using Asset Import Pipeline V2.
+Refreshing native plugins compatible for Editor in 94.85 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Initialize engine version: 2020.3.10f1 (297d780c91bc)
+[Subsystems] Discovering subsystems at path C:/Unity Editors/2020.3.10f1/Editor/Data/Resources/UnitySubsystems
+[Subsystems] Discovering subsystems at path C:/Github Desktop/Taller-2021-I/Taller 1 2021/Assets
+GfxDevice: creating device client; threaded=0
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.1]
+    Renderer: NVIDIA GeForce GTX 1070 (ID=0x1b81)
+    Vendor:   
+    VRAM:     8088 MB
+    Driver:   27.21.14.6677
+Initialize mono
+Mono path[0] = 'C:/Unity Editors/2020.3.10f1/Editor/Data/Managed'
+Mono path[1] = 'C:/Unity Editors/2020.3.10f1/Editor/Data/MonoBleedingEdge/lib/mono/unityjit'
+Mono config path = 'C:/Unity Editors/2020.3.10f1/Editor/Data/MonoBleedingEdge/etc'
+Using monoOptions --debugger-agent=transport=dt_socket,embedding=1,server=y,suspend=n,address=127.0.0.1:56684
+Begin MonoManager ReloadAssembly
+Registering precompiled unity dll's ...
+Register platform support module: C:/Unity Editors/2020.3.10f1/Editor/Data/PlaybackEngines/WindowsStandaloneSupport/UnityEditor.WindowsStandalone.Extensions.dll
+Registered in 0.001598 seconds.
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 79.77 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.489 seconds
+Platform modules already initialized, skipping
+Registering precompiled user dll's ...
+Registered in 0.007104 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 81.71 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.087 seconds
+Platform modules already initialized, skipping
+========================================================================
+Worker process is ready to serve import requests
+Launched and connected shader compiler UnityShaderCompiler.exe after 0.04 seconds
+Refreshing native plugins compatible for Editor in 1.07 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2840 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 118.1 MB.
+System memory in use after: 118.1 MB.
+
+Unloading 72 unused Assets to reduce memory usage. Loaded Objects now: 3242.
+Total: 5.902800 ms (FindLiveObjects: 0.224200 ms CreateObjectMapping: 0.096500 ms MarkObjects: 5.456600 ms  DeleteObjects: 0.124100 ms)
+
+========================================================================
+Received Import Request.
+  path: Assets/Images/Weapons/Melee/24x24-fantasy-weapons-spritesheet.png
+  artifactKey: Guid(ad2a49dc44cea2f49897d4fcb3bc2304) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Images/Weapons/Melee/24x24-fantasy-weapons-spritesheet.png using Guid(ad2a49dc44cea2f49897d4fcb3bc2304) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bceb519febc16233ffbdc234d423d634') in 0.165867 seconds
+  Import took 0.171613 seconds .
+
+========================================================================
+Received Prepare
+Registering precompiled user dll's ...
+Registered in 0.006680 seconds.
+Begin MonoManager ReloadAssembly
+Native extension for WindowsStandalone target not found
+Refreshing native plugins compatible for Editor in 1.21 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Mono: successfully reloaded assembly
+- Completed reload, in  1.001 seconds
+Platform modules already initialized, skipping
+Refreshing native plugins compatible for Editor in 1.11 ms, found 3 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 2822 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 119.8 MB.
+System memory in use after: 119.9 MB.
+
+Unloading 61 unused Assets to reduce memory usage. Loaded Objects now: 3253.
+Total: 5.271500 ms (FindLiveObjects: 0.278900 ms CreateObjectMapping: 0.104700 ms MarkObjects: 4.779100 ms  DeleteObjects: 0.107800 ms)
+
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
