@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,18 +7,19 @@ using UnityEngine.SceneManagement;
 
 public class PauseManager : MonoBehaviour
 {
-    private bool isPaused = false;
-
+    private bool isPaused;
     public GameObject pausePanel;
 
-    public int mainMenuIndex = 0;
+    public int titleSceneIndex = 0;
 
-    private void Start()
+    // Start is called before the first frame update
+    void Start()
     {
         isPaused = false;
     }
 
-    private void Update()
+    // Update is called once per frame
+    void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
@@ -29,11 +31,13 @@ public class PauseManager : MonoBehaviour
     {
         isPaused = !isPaused;
 
+        // Activamos la pausa
         if (isPaused)
         {
             pausePanel.SetActive(true);
             Time.timeScale = 0f;
         }
+        // Desactivamos la pausa
         else
         {
             pausePanel.SetActive(false);
@@ -41,9 +45,9 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    public void BackToMenu()
+    public void BackToTitle()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(mainMenuIndex);
+        SceneManager.LoadScene(titleSceneIndex);
     }
 }

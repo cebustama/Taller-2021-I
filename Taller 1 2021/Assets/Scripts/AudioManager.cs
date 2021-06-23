@@ -15,13 +15,9 @@ public class AudioManager : MonoBehaviour
 
         if (musicSource == null)
             musicSource = gameObject.AddComponent<AudioSource>();
-        else
-            Debug.LogError("Falta asignar un AudioSource para la música en el AudioManager.");
 
         if (sfxSource == null) 
             sfxSource = gameObject.AddComponent<AudioSource>();
-        else
-            Debug.LogError("Falta asignar un AudioSource para los SFX en el AudioManager.");
     }
 
     public void ReproducirCancion(AudioClip clip)
