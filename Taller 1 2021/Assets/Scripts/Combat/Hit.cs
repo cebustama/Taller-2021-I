@@ -47,8 +47,8 @@ public class Hit : MonoBehaviour
             }
 
             // Stagger player
-            PlayerMovement player = other.GetComponent<PlayerMovement>();
-            if (player == null) player = other.GetComponentInParent<PlayerMovement>();
+            PlayerController player = other.GetComponent<PlayerController>();
+            if (player == null) player = other.GetComponentInParent<PlayerController>();
 
             if (player != null)
             {

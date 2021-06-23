@@ -24,7 +24,7 @@ public enum ControlType
     WASD,
 }
 
-public class PlayerMovement : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
     public PlayerState currentState;
 

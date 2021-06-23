@@ -1,12 +1,8 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Collider2D), typeof(Hit), typeof(Rigidbody2D))]
 public class PlayerWeapon : MonoBehaviour
 {
-    protected PlayerMovement player;
+    protected PlayerController player;
     protected bool equipped = false;
     protected bool thrown = false;
 
@@ -55,7 +51,7 @@ public class PlayerWeapon : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            if (player == null) player = other.GetComponent<PlayerMovement>();
+            if (player == null) player = other.GetComponent<PlayerController>();
 
             // Pick up
             player.PickUpWeapon(transform);
