@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
 
     Vector2 movement;
 
-    Rigidbody2D rb;
+    public Rigidbody2D rb;
 
     [Header("Health")]
     public float startingHealth = 10;

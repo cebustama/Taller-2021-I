@@ -14,10 +14,15 @@ public class RangedWeapon : PlayerWeapon
     public ShootingType shootingType;
     public GameObject projectile;
 
+    public List<Transform> firePoints;
+
+    [Header("Settings")]
     public float fireRate = 0.5f;
     float fireTimer = 0;
-
-    public Transform firePoint;
+    //[Range(0, 1)]
+    //public float accuracy = 1f;
+    public float maxAccAngle = 45f;
+    public float recoilForce = 1f;
 
     // Update is called once per frame
     public override void Update()
@@ -58,8 +63,59 @@ public class RangedWeapon : PlayerWeapon
     public virtual void Shoot(Vector2 direction)
     {
         fireTimer = 1 / fireRate;
-        GameObject newProjectile = Instantiate(projectile, firePoint.position, Quaternion.identity);
-        newProjectile.GetComponent<Projectile>().Launch(direction, gameObject.tag, gameObject.layer);
+
+        // Disparar por cada punto de disparo
+        for (int i = 0; i < firePoints.Count; i++)
+        {
+            GameObject newProjectile = Instantiate(projectile, firePoints[i].transform.position, Quaternion.identity);
+            Vector2 rotatedDirection = RotateVector(direction, firePoints[i].localEulerAngles.z);
+
+            // Rotar el ángulo de disparo en el rango de accuracy definido
+            float randomRotation = Random.Range(-maxAccAngle, maxAccAngle);
+            rotatedDirection = RotateVector(rotatedDirection, randomRotation);
+
+            newProjectile.GetComponent<Projectile>().Launch(rotatedDirection, gameObject.tag, gameObject.layer);
+        }
+
+        // Aplicar el recoil al player
+        Vector2 recoilDirection = direction * -1f;
+        player.rb.AddForce(recoilDirection * recoilForce, ForceMode2D.Impulse);
+        player.Hit(.5f, 0f);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (!Application.isPlaying)
+        {
+            for (int i = 0; i < firePoints.Count; i++)
+            {
+                Gizmos.color = Color.white;
+                Vector2 initial = firePoints[i].transform.position;
+                Vector2 direction = RotateVector(Vector2.right, firePoints[i].localEulerAngles.z).normalized;
+                Vector2 final = initial + direction * .5f;
+                Gizmos.DrawLine(initial, final);
+
+                // Accuracy
+                Gizmos.color = Color.red;
+                Vector2 topAcc = RotateVector(direction, maxAccAngle);
+                Vector2 bottomAcc = RotateVector(direction, -maxAccAngle);
+                Gizmos.DrawLine(initial, initial + topAcc * .25f);
+                Gizmos.DrawLine(initial, initial + bottomAcc * .25f);
+            }
+
+            
+        }
+    }
+
+    // https://answers.unity.com/questions/1229302/rotate-a-vector2-around-the-z-axis-on-a-mathematic.html
+    Vector2 RotateVector(Vector2 aPoint, float aDegree)
+    {
+        float rad = aDegree * Mathf.Deg2Rad;
+        float s = Mathf.Sin(rad);
+        float c = Mathf.Cos(rad);
+        return new Vector2(
+            aPoint.x * c - aPoint.y * s,
+            aPoint.y * c + aPoint.x * s);
     }
 
 }

@@ -23,7 +23,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201111737031623305}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.1809998, y: 0.110000014, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -83,8 +83,11 @@ MonoBehaviour:
   shootingType: 1
   projectile: {fileID: 595103619410661216, guid: 0e1ce8f2c03b6cf48a28e6e5c16f2546,
     type: 3}
+  firePoints:
+  - {fileID: 1025258661377103666}
   fireRate: 5
-  firePoint: {fileID: 1025258661377103666}
+  maxAccAngle: 25
+  recoilForce: 0.3
 --- !u!58 &3462721939003007146
 CircleCollider2D:
   m_ObjectHideFlags: 0
