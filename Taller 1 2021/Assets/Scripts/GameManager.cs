@@ -5,7 +5,6 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     public bool esconderMouse = false;
-    public GameObject menuDePausa;
 
     private void Awake()
     {
@@ -15,12 +14,6 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            //Application.Quit();
-            TogglePausa();
-        }
-
         // Cámara lenta
         if (Input.GetKeyDown(KeyCode.T))
         {
@@ -33,19 +26,4 @@ public class GameManager : MonoBehaviour
         
     }
 
-    public void TogglePausa()
-    {
-        // Activar la pausa
-        if (!menuDePausa.activeSelf)
-        {
-            menuDePausa.SetActive(true);
-            Time.timeScale = 0;
-        }
-        // Desactivar la pause
-        else
-        {
-            menuDePausa.SetActive(false);
-            Time.timeScale = 1;
-        }
-    }
 }

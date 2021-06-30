@@ -12,8 +12,9 @@ public class Projectile : MonoBehaviour
     [Header("Lifetime")]
     public float lifetime;
     private float lifeTimeSeconds;
+    public GameObject destroyEffect;
 
-    public Rigidbody2D rb;
+    private Rigidbody2D rb;
 
     private Hit hit;
 
@@ -22,6 +23,7 @@ public class Projectile : MonoBehaviour
     private void Start()
     {
         lifeTimeSeconds = lifetime;
+        rb = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -35,6 +37,8 @@ public class Projectile : MonoBehaviour
 
     public void Launch(Vector2 initialVel, string tagException = "", int layerException = int.MinValue)
     {
+        if (rb == null) rb = GetComponent<Rigidbody2D>();
+
         rb.velocity = initialVel * moveSpeed;
 
         if (tagException != "")
@@ -48,6 +52,8 @@ public class Projectile : MonoBehaviour
         if (layerException != int.MinValue)
         {
             gameObject.layer = layerException;
+            hit = GetComponent<Hit>();
+            hit.layerHitFilterList.Add(layerException);
         }
     }
 
@@ -62,8 +68,12 @@ public class Projectile : MonoBehaviour
         // Check layer
         if (other.gameObject.layer == gameObject.layer) return;
 
-        Debug.Log(other.name);
-
-        Destroy(gameObject);
+        // Solo destruir con el player
+        PlayerController player = other.GetComponent<PlayerController>();
+        if (player != null || other.gameObject.layer == LayerMask.NameToLayer("Collisions"))
+        {
+            if (destroyEffect != null) Instantiate(destroyEffect, transform.position, Quaternion.identity);
+            Destroy(gameObject);
+        }
     }
 }

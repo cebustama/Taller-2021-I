@@ -26,6 +26,15 @@ public class Hit : MonoBehaviour
             }
         }
 
+        // Ignore hit for layers
+        foreach (int layer in layerHitFilterList)
+        {
+            if (other.gameObject.layer == layer)
+            {
+                return;
+            }
+        }
+
         // Find enemy rb and apply force to it
         Rigidbody2D otherRb = other.GetComponent<Rigidbody2D>();
         if (otherRb == null) otherRb = other.GetComponentInParent<Rigidbody2D>();
