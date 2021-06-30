@@ -6,6 +6,7 @@ public enum EnemyState
 {
     idle,
     walk,
+    follow,
     attack,
     stagger
 }
@@ -27,7 +28,11 @@ public class Enemy : MonoBehaviour
     public float followDistance = 0f;
     public float followSpeed = 1f;
     public bool stopShooting = true;
-    private bool following = false;
+
+    [Header("Attack")]
+    public float attackDistance = 0f;
+    public float attackRate = 1f;
+    private float attackTimer = 0f;
 
     [Header("Shooting")]
     public float shootingDistance = 0f;
@@ -72,25 +77,44 @@ public class Enemy : MonoBehaviour
         Vector2 targetDirection = diff.normalized;
         float targetDistance = diff.magnitude;
 
-        // Follow
-        if (targetDistance <= followDistance)
+        // Attack
+        attackTimer -= Time.deltaTime;
+        if (targetDistance <= attackDistance)
         {
-            // Seguir al target
-            rb.MovePosition(transform.position + (Vector3)targetDirection * followSpeed * Time.deltaTime);
-
-            following = true;
+            if (attackTimer <= 0)
+            {
+                StartCoroutine(AttackCo());
+            }
         }
-        else
+        else if (attackTimer > 0)
         {
-            following = false;
+            currentState = EnemyState.idle;
+        }
+
+        // Follow
+        if (currentState != EnemyState.attack)
+        {
+            if (targetDistance <= followDistance)
+            {
+                // Seguir al target
+                rb.MovePosition(transform.position + (Vector3)targetDirection * followSpeed * Time.deltaTime);
+
+                currentState = EnemyState.follow;
+            }
+            else
+            {
+                currentState = EnemyState.idle;
+            }
         }
 
         // Shooting
         shootingTimer -= Time.deltaTime;
         if (targetDistance <= shootingDistance)
         {
-            // Evitar disparar si nos está persiguiendo
-            if (following && stopShooting) shootingTimer = shootingRate;
+            // Evitar disparar si nos está persiguiendo o atacando
+            if ((currentState == EnemyState.follow || currentState == EnemyState.attack)
+                && stopShooting) 
+                shootingTimer = shootingRate;
 
             if (shootingTimer <= 0)
             {
@@ -107,6 +131,19 @@ public class Enemy : MonoBehaviour
                 shootingTimer = shootingRate;
             }
         }
+    }
+
+    public IEnumerator AttackCo()
+    {
+        animator?.SetTrigger("Attack");
+        currentState = EnemyState.attack;
+
+        yield return new WaitForEndOfFrame();
+        float attackAnimLenght = animator.GetCurrentAnimatorStateInfo(0).length;
+
+        yield return new WaitForSeconds(attackAnimLenght);
+
+        attackTimer = attackRate;
     }
 
     void TakeDamage(float damage)
@@ -154,5 +191,8 @@ public class Enemy : MonoBehaviour
 
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, shootingDistance);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 }

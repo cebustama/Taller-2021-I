@@ -68,9 +68,12 @@ public class Projectile : MonoBehaviour
         // Check layer
         if (other.gameObject.layer == gameObject.layer) return;
 
+        //Debug.Log(other.name);
+
         // Solo destruir con el player
         PlayerController player = other.GetComponent<PlayerController>();
-        if (player != null || other.gameObject.layer == LayerMask.NameToLayer("Collisions"))
+        Enemy enemy = other.GetComponent<Enemy>();
+        if (player != null || enemy != null || other.gameObject.layer == LayerMask.NameToLayer("Collisions"))
         {
             if (destroyEffect != null) Instantiate(destroyEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
