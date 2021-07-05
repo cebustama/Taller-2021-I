@@ -140,7 +140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d51c0111c6f03348ab412140793c2e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 7.5
+  moveSpeed: 2
   directionToMove: {x: 0, y: 0}
   lifetime: 5
   destroyEffect: {fileID: 6498460893150119840, guid: ca32ae60b67325d4696d93c825346c71,

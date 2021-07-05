@@ -47,7 +47,7 @@
   <PropertyGroup>
     <ProjectTypeGuids>{E097FAD1-6243-4DAD-9C02-E9B9EFC3FFC1};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <UnityProjectGenerator>Package</UnityProjectGenerator>
-    <UnityProjectGeneratorVersion>2.0.8</UnityProjectGeneratorVersion>
+    <UnityProjectGeneratorVersion>2.0.9</UnityProjectGeneratorVersion>
     <UnityProjectType>Game:1</UnityProjectType>
     <UnityBuildTarget>StandaloneWindows:5</UnityBuildTarget>
     <UnityVersion>2020.3.10f1</UnityVersion>
@@ -62,7 +62,7 @@
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\AnchorSnap\AnchorSnap.cs" />
     <Compile Include="Assets\Scripts\BridgeLayer.cs" />
-    <Compile Include="Assets\Room.cs" />
+    <Compile Include="Assets\Scripts\Room.cs" />
     <Compile Include="Assets\Scripts\Conditions\ConditionKeyPress.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\UserInterface\BalloonScript.cs" />
     <Compile Include="Assets\Scripts\Interruptor.cs" />
@@ -93,6 +93,7 @@
     <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\Utils.cs" />
     <Compile Include="Assets\Scripts\Conditions\Actions\TeleportAction.cs" />
     <Compile Include="Assets\Scripts\Movement\Jump.cs" />
+    <Compile Include="Assets\Scripts\Camera\CameraPostProcessing.cs" />
     <Compile Include="Assets\Scripts\Movement\Rotate.cs" />
     <Compile Include="Assets\Scripts\RotateTowardsMouse.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerShooter.cs" />
@@ -110,8 +111,9 @@
     <Compile Include="Assets\Scripts\Conditions\Actions\DialogueBalloonAction.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\BaseClasses\Physics2DObject.cs" />
     <Compile Include="Assets\Scripts\Attributes\CollectableAttribute.cs" />
+    <Compile Include="Assets\Scripts\ChangeSceneTimer.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ObjectShooter.cs" />
-    <Compile Include="Assets\GameOverManager.cs" />
+    <Compile Include="Assets\Scripts\GameOverManager.cs" />
     <Compile Include="Assets\Scripts\Combat\MeleeWeapon.cs" />
     <Compile Include="Assets\Scripts\ScreenFade.cs" />
     <Compile Include="Assets\Scripts\MainMenu.cs" />
@@ -120,7 +122,7 @@
     <Compile Include="Assets\_INTERNAL_\Scripts\BaseClasses\Action.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\InventoryResources.cs" />
     <Compile Include="Assets\Scripts\Gameplay\Projectile.cs" />
-    <Compile Include="Assets\Bomb.cs" />
+    <Compile Include="Assets\Scripts\Bomb.cs" />
     <Compile Include="Assets\Scripts\Combat\Coliseo.cs" />
     <Compile Include="Assets\Scripts\CheckpointManager.cs" />
     <Compile Include="Assets\Scripts\Movement\Push.cs" />
@@ -128,14 +130,18 @@
     <Compile Include="Assets\Scripts\Conditions\ConditionArea.cs" />
     <Compile Include="Assets\Scripts\Conditions\Actions\CreateObjectAction.cs" />
     <Compile Include="Assets\Scripts\TimedDeactivate.cs" />
+    <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\Attributes\ResourceAttribute.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Attributes\HealthSystemAttribute.cs" />
     <Compile Include="Assets\Scripts\Conditions\ConditionResource.cs" />
-    <Compile Include="Assets\MainMenuClase.cs" />
+    <Compile Include="Assets\Scripts\MainMenuClase.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerAttack.cs" />
-    <Compile Include="Assets\PauseManagerClase.cs" />
-    <Compile Include="Assets\Scripts\Camera\CameraPostProcessing.cs" />
+    <Compile Include="Assets\Scripts\PauseManagerClase.cs" />
+    <Compile Include="Assets\Scripts\Status Effects\StatusEffect.cs" />
+    <Compile Include="Assets\Scripts\Status Effects\FrozenStatus.cs" />
+    <Compile Include="Assets\Scripts\Status Effects\BurnStatus.cs" />
+    <Compile Include="Assets\Scripts\Status Effects\PoisonStatus.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

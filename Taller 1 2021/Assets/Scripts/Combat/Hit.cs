@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class Hit : MonoBehaviour
 {
+    // TODO: Mover a otro script separado
+    [Header("Knockback")]
     public float thrust = 4f;
     public float knockTime = 0.3f;
+    
+    // TODO: Cambiar nombre al script a Damage o algo asi
+    [Header("Daño")]
     public float damage;
 
+    [Header("Efectos")]
+    public List<StatusEffect> statusEffects;
+
+    [Header("Excepciones")]
     public List<string> tagHitFilterList = new List<string>();
     public List<int> layerHitFilterList = new List<int>();
 
@@ -49,16 +58,20 @@ public class Hit : MonoBehaviour
             // Stagger enemy
             Enemy e = other.GetComponent<Enemy>();
             if (e == null) e = other.GetComponentInParent<Enemy>();
-
             if (e != null)
             {
                 e.Hit(otherRb, knockTime, damage);
+
+                foreach (StatusEffect fx in statusEffects)
+                {
+                    e.StatusEffect(fx);
+                }
+                //e.StatusEffect(duracion, lentitud);
             }
 
             // Stagger player
             PlayerController player = other.GetComponent<PlayerController>();
             if (player == null) player = other.GetComponentInParent<PlayerController>();
-
             if (player != null)
             {
                 player.Hit(knockTime, damage);

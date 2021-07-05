@@ -17,8 +17,9 @@ public class Enemy : MonoBehaviour
     public EnemyState currentState;
 
     [Header("Enemy Settings")]
+    public bool useAnimator = true;
     public int maxHealth;
-    float health;
+    [SerializeField] private float health;
 
     public string enemyName;
 
@@ -44,11 +45,9 @@ public class Enemy : MonoBehaviour
     public GameObject deathEffect;
     private float deathEffectDeathTime = 1f;
 
-    [HideInInspector]
-    public Rigidbody2D rb;
-
-    [HideInInspector]
-    public Animator animator;
+    [SerializeField] private Rigidbody2D rb;
+    [SerializeField] private Animator animator;
+    [SerializeField] private SpriteRenderer spriteRenderer;
 
     public const float arrivedDistance = 0.5f;
 
@@ -58,6 +57,7 @@ public class Enemy : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
         homePosition = transform.position;
         health = maxHealth;
 
@@ -131,6 +131,8 @@ public class Enemy : MonoBehaviour
                 shootingTimer = shootingRate;
             }
         }
+
+        ManageAnimation(targetDirection);
     }
 
     public IEnumerator AttackCo()
@@ -167,7 +169,7 @@ public class Enemy : MonoBehaviour
 
     public void Hit(Rigidbody2D myRigidbody, float knockTime, float damage)
     {
-        //Debug.Log("Soy " + enemyName + " y me están atacando");
+        Debug.Log("Soy " + enemyName + " y me están atacando " + damage);
         StartCoroutine(KnockCo(myRigidbody, knockTime));
         TakeDamage(damage);
     }
@@ -181,6 +183,49 @@ public class Enemy : MonoBehaviour
 
             myRigidbody.velocity = Vector2.zero;
             currentState = EnemyState.idle;
+        }
+    }
+
+    public void StatusEffect(StatusEffect fx)
+    {
+        // Lentitud
+        FrozenStatus frozen = fx.GetComponent<FrozenStatus>();
+        if (frozen != null)
+        {
+            StartCoroutine(LentitudCo(fx.duration, frozen.speedModifier, frozen.spriteColor));
+        }
+    }
+
+    private IEnumerator LentitudCo(float duration, float speedMult, Color slowColor)
+    {
+        // Guardar velocidad original y asignar la nueva velocidad
+        float originalSpeed = followSpeed;
+        followSpeed = followSpeed * speedMult;
+        // Guardar color original y asignar nuevo color
+        Color originalColor = spriteRenderer.color;
+        spriteRenderer.color = slowColor;
+
+        // Esperar tiempo del efecto
+        yield return new WaitForSeconds(duration);
+
+        // Reasignar velocidad original y color original
+        followSpeed = originalSpeed;
+        spriteRenderer.color = originalColor;
+    }
+
+    public void ManageAnimation(Vector2 movement)
+    {
+        if (animator == null || !useAnimator) return;
+
+        if (movement != Vector2.zero)
+        {
+            animator.SetBool("moving", true);
+            animator.SetFloat("moveX", movement.x);
+            animator.SetFloat("moveY", movement.y);
+        }
+        else
+        {
+            animator.SetBool("moving", false);
         }
     }
 

@@ -6,7 +6,8 @@ public enum ShootingType
 {
     click,
     hold,
-    release
+    release,
+    charge
 }
 
 public class RangedWeapon : PlayerWeapon
@@ -78,9 +79,12 @@ public class RangedWeapon : PlayerWeapon
         }
 
         // Aplicar el recoil al player
-        Vector2 recoilDirection = direction * -1f;
-        player.rb.AddForce(recoilDirection * recoilForce, ForceMode2D.Impulse);
-        player.Hit(.5f, 0f);
+        if (recoilForce != 0)
+        {
+            Vector2 recoilDirection = direction * -1f;
+            player.rb.AddForce(recoilDirection * recoilForce, ForceMode2D.Impulse);
+            player.Hit(.5f, 0f);
+        }
     }
 
     private void OnDrawGizmos()
