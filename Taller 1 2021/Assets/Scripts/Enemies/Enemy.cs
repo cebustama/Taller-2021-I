@@ -219,25 +219,25 @@ public class Enemy : MonoBehaviour
 
         if (movement != Vector2.zero)
         {
-            animator.SetBool("moving", true);
-            animator.SetFloat("moveX", movement.x);
-            animator.SetFloat("moveY", movement.y);
+            animator?.SetBool("moving", true);
+            animator?.SetFloat("moveX", movement.x);
+            animator?.SetFloat("moveY", movement.y);
         }
         else
         {
-            animator.SetBool("moving", false);
+            animator?.SetBool("moving", false);
         }
     }
 
     private void OnDrawGizmos()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, followDistance);
+        //Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(transform.position, followDistance);
 
-        Gizmos.color = Color.yellow;
-        Gizmos.DrawWireSphere(transform.position, shootingDistance);
+        //Gizmos.color = Color.yellow;
+        //Gizmos.DrawWireSphere(transform.position, shootingDistance);
 
-        Gizmos.color = Color.cyan;
-        Gizmos.DrawWireSphere(transform.position, attackDistance);
+        //Gizmos.color = Color.cyan;
+        //Gizmos.DrawWireSphere(transform.position, attackDistance);
     }
 }

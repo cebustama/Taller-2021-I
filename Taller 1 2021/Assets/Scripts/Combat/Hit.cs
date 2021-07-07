@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Hit : MonoBehaviour
 {
+    public bool destroyOnActivate = false;
+
     // TODO: Mover a otro script separado
     [Header("Knockback")]
     public float thrust = 4f;
@@ -72,10 +74,13 @@ public class Hit : MonoBehaviour
             // Stagger player
             PlayerController player = other.GetComponent<PlayerController>();
             if (player == null) player = other.GetComponentInParent<PlayerController>();
-            if (player != null)
+            if (player != null && !other.CompareTag("Weapon"))
             {
+                
                 player.Hit(knockTime, damage);
             }
+
+            if (destroyOnActivate) Destroy(gameObject);
         }
     }
 }

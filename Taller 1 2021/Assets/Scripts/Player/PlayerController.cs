@@ -9,7 +9,8 @@ public enum PlayerState
     attack,
     //interact,
     stagger,
-    idle
+    idle,
+    jumping
 }
 
 public enum MovementType
@@ -24,6 +25,13 @@ public enum ControlType
     WASD,
 }
 
+public enum MovimientoPermitido
+{
+    Todo,
+    Solo_Horizontal,
+    Solo_Vertical
+}
+
 public class PlayerController : MonoBehaviour
 {
     public PlayerState currentState;
@@ -31,7 +39,9 @@ public class PlayerController : MonoBehaviour
     [Header("Move Settings")]
     public ControlType controlType = ControlType.WASD;
     public MovementType movementType;
+    public MovimientoPermitido movimientoPermitido;
     public float moveSpeed = 5f;
+    public float airMoveSpeed = 1f;
     public bool flipLeft = false;
 
     [Header("Tile Movement")]
@@ -119,7 +129,7 @@ public class PlayerController : MonoBehaviour
         }
 
         // Ataque
-        if (Input.GetKeyDown(KeyCode.Space) && currentState != PlayerState.attack)
+        if (Input.GetButtonDown("Attack") && currentState != PlayerState.attack)
         {
             StartCoroutine(AttackCoroutine());
         }
@@ -134,7 +144,7 @@ public class PlayerController : MonoBehaviour
     IEnumerator AttackCoroutine()
     {
         // Llamar a la animación de ataque y setear el estado "atacando"
-        animator.SetTrigger("attack");
+        animator?.SetTrigger("attack");
         currentState = PlayerState.attack;
 
         // Obtener dirección en que estoy mirando y activar el collider correspondiente
@@ -149,7 +159,7 @@ public class PlayerController : MonoBehaviour
         yield return null;
 
         // Obtener tiempo de la animación de ataque
-        float attackTime = animator.GetCurrentAnimatorClipInfo(0)[0].clip.length;
+        float attackTime = (animator) ? animator.GetCurrentAnimatorClipInfo(0)[0].clip.length : .5f;
 
         // Esperar ese tiempo
         yield return new WaitForSeconds(attackTime);
@@ -169,31 +179,56 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (movementType == MovementType.FREE && currentState != PlayerState.attack && currentState != PlayerState.stagger)
+        if (movementType == MovementType.FREE && 
+            currentState != PlayerState.attack && currentState != PlayerState.stagger)
         {
-            change = movement.normalized;
+            Move();
+            ManageAnimation();
+        }
+    }
+
+    private void Move()
+    {
+        // MOVIMIENTO: Mover el RigidBody del personaje
+        change = movement.normalized;
+        // Restricciones de movimiento
+        if (movimientoPermitido == MovimientoPermitido.Solo_Horizontal) change.y = 0f;
+        if (movimientoPermitido == MovimientoPermitido.Solo_Vertical) change.x = 0f;
+
+        // Movimiento en el suelo
+        if (currentState != PlayerState.jumping)
+        {
+            // Aplicar vector de movimiento al RigidBody
             rb.MovePosition((Vector2)transform.position + change * moveSpeed * Time.fixedDeltaTime);
+        }
+        // Movimiento en el aire
+        else
+        {
+            rb.AddForce(change * airMoveSpeed);
+        }
+    }
 
-            // El personaje se está moviendo
-            if (movement != Vector2.zero)
+    private void ManageAnimation()
+    {
+        // El personaje se está moviendo
+        if (movement != Vector2.zero)
+        {
+            animator?.SetBool("moving", true);
+
+            // Dar vuelta el sprite al caminar a la izquierda
+            playerRenderer.flipX = false;
+            if (flipLeft && movement.x < 0)
             {
-                animator.SetBool("moving", true);
-
-                // Dar vuelta el sprite al caminar a la izquierda
-                playerRenderer.flipX = false;
-                if (flipLeft && movement.x < 0)
-                {
-                    playerRenderer.flipX = true;
-                }
-
-                animator.SetFloat("moveX", change.x);
-                animator.SetFloat("moveY", change.y);
+                playerRenderer.flipX = true;
             }
-            // El personaje NO se está moviendo
-            else
-            {
-                animator.SetBool("moving", false);
-            }
+
+            animator?.SetFloat("moveX", change.x);
+            animator?.SetFloat("moveY", change.y);
+        }
+        // El personaje NO se está moviendo
+        else
+        {
+            animator?.SetBool("moving", false);
         }
     }
 
@@ -218,6 +253,7 @@ public class PlayerController : MonoBehaviour
 
         change = movement.normalized;
 
+        // Guardar dirección del player para el ataque
         // Eje X
         if (Mathf.Abs(change.x) > Mathf.Abs(change.y))
         {
@@ -331,6 +367,8 @@ public class PlayerController : MonoBehaviour
     {
         if (currentState != PlayerState.stagger)
         {
+            Debug.Log("PLAYER HIT");
+
             currentHealth -= damage;
             if (currentHealth > 0)
             {

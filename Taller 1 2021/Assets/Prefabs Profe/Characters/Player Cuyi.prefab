@@ -197,11 +197,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e62b9066974c94aa88c813f56655f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnActivate: 0
   thrust: 4
   knockTime: 0.3
   damage: 1
-  duracion: 2
-  lentitud: 1
+  statusEffects: []
   tagHitFilterList: []
   layerHitFilterList: 
   activated: 1
@@ -284,11 +284,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e62b9066974c94aa88c813f56655f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnActivate: 0
   thrust: 4
   knockTime: 0.3
   damage: 1
-  duracion: 2
-  lentitud: 1
+  statusEffects: []
   tagHitFilterList: []
   layerHitFilterList: 
   activated: 1
@@ -304,9 +304,9 @@ GameObject:
   - component: {fileID: 2469098519191554620}
   - component: {fileID: 2469098519191554623}
   - component: {fileID: 2469098519191554622}
-  - component: {fileID: 2469098519191554610}
   - component: {fileID: 2469098519191554611}
   - component: {fileID: 7548615706284205516}
+  - component: {fileID: 2469098519191554610}
   m_Layer: 6
   m_Name: Player Cuyi
   m_TagString: Player
@@ -328,6 +328,7 @@ Transform:
   - {fileID: 2469098517915415053}
   - {fileID: 5020709552392963246}
   - {fileID: 618098030}
+  - {fileID: 979791167213403238}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -398,7 +399,9 @@ MonoBehaviour:
   currentState: 0
   controlType: 1
   movementType: 0
+  movimientoPermitido: 0
   moveSpeed: 5
+  airMoveSpeed: 1
   flipLeft: 1
   moveTime: 0.2
   tileSize: 1
@@ -435,22 +438,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!70 &2469098519191554610
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2469098519191554617}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.026052237, y: -0.26}
-  m_Size: {x: 0.92, y: 0.67}
-  m_Direction: 1
 --- !u!95 &2469098519191554611
 Animator:
   serializedVersion: 3
@@ -496,6 +483,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.65, y: 0.68}
   m_EdgeRadius: 0
+--- !u!70 &2469098519191554610
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2469098519191554617}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.026052237, y: -0.36}
+  m_Size: {x: 0.72, y: 0.37}
+  m_Direction: 1
 --- !u!1 &2469098519221905011
 GameObject:
   m_ObjectHideFlags: 0
@@ -573,11 +576,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e62b9066974c94aa88c813f56655f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnActivate: 0
   thrust: 4
   knockTime: 0.3
   damage: 1
-  duracion: 2
-  lentitud: 1
+  statusEffects: []
   tagHitFilterList: []
   layerHitFilterList: 
   activated: 1
@@ -657,11 +660,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77e62b9066974c94aa88c813f56655f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  destroyOnActivate: 0
   thrust: 4
   knockTime: 0.3
   damage: 1
-  duracion: 2
-  lentitud: 1
+  statusEffects: []
   tagHitFilterList: []
   layerHitFilterList: 
   activated: 1
@@ -737,3 +740,33 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!1 &5171472610725738199
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 979791167213403238}
+  m_Layer: 6
+  m_Name: Player Hurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &979791167213403238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171472610725738199}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2469098519191554621}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
