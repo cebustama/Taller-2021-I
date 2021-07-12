@@ -9,20 +9,33 @@ public class PlayerJumping : MonoBehaviour
 
     public Rigidbody2D rb;
 
+    [Range(1, 10)]
     public float jumpHeight = 5f;
+
     public float jumpTime = 1f;
     public float gravity = 1f;
     float jumpTimer = float.MaxValue;
     public AnimationCurve jumpUpCurve;
 
+    // TODO: Max jumps
+    // TODO: Wall jumps, Max wall jumps
+    // TODO: Wall slide
+    // TODO: Wall climb
+
     public bool jumping = false;
 
     float initialY;
 
+    // TODO: Mover colisiones a su propio script
     [Header("Collision Detection")]
     public float rayCircleRadius = 0.2f;
     public float downOffset = 1f;
-    public Collider2D downCollider;
+    public float sidesOffset = 1f;
+
+    // Collisions
+    [SerializeField] private Collider2D downCollision;
+    [SerializeField] private Collider2D leftCollision;
+    [SerializeField] private Collider2D rightCollision;
 
     // Update is called once per frame
     void Update()
@@ -48,13 +61,38 @@ public class PlayerJumping : MonoBehaviour
     private void ManageCollisions()
     {
         // Abajo
-        downCollider = null;
-        Collider2D[] downColliders = Physics2D.OverlapCircleAll(rb.transform.position + Vector3.down * downOffset, rayCircleRadius);
-        foreach (Collider2D c in downColliders)
+        downCollision = null;
+        Collider2D[] downCollisions = Physics2D.OverlapCircleAll(rb.transform.position + Vector3.down * downOffset, rayCircleRadius);
+        foreach (Collider2D c in downCollisions)
         {
+            // GROUND
             if (c.CompareTag("Ground"))
             {
-                downCollider = c;
+                downCollision = c;
+            }
+        }
+
+        // Izquierda
+        leftCollision = null;
+        Collider2D[] leftCollisions = Physics2D.OverlapCircleAll(rb.transform.position + Vector3.left * sidesOffset, rayCircleRadius);
+        foreach (Collider2D c in leftCollisions)
+        {
+            // WALLS
+            if (c.CompareTag("Wall"))
+            {
+                leftCollision = c;
+            }
+        }
+
+        // Derecha
+        rightCollision = null;
+        Collider2D[] rightCollisions = Physics2D.OverlapCircleAll(rb.transform.position + Vector3.right * sidesOffset, rayCircleRadius);
+        foreach (Collider2D c in rightCollisions)
+        {
+            // WALLS
+            if (c.CompareTag("Wall"))
+            {
+                rightCollision = c;
             }
         }
     }
@@ -64,6 +102,7 @@ public class PlayerJumping : MonoBehaviour
         // Saltar
         if ((jumping && jumpTimer < jumpTime))
         {
+            // TODO: Salto más alto si mantiene apretado el botón
             Debug.Log("GOING UP");
             float yPos = initialY + jumpUpCurve.Evaluate(jumpTimer / jumpTime) * jumpHeight;
             // TODO: Usar velocity
@@ -74,13 +113,16 @@ public class PlayerJumping : MonoBehaviour
         // Usar gravedad
         if ((jumping && jumpTimer >= jumpTime))
         {
+            // TODO: Fast fall
             Debug.Log("GOING DOWN");
             //FinishJump();
             rb.velocity += Vector2.down * gravity * 10f * Time.fixedDeltaTime;
         }
 
+        // TODO: Agregar lógica al tocar paredes (roce, wall jump, agarrarse, etc)
+
         // Caer
-        if (!jumping && downCollider == null)
+        if (!jumping && downCollision == null)
         {
             player.currentState = PlayerState.jumping;
             jumpTimer = float.MaxValue;
@@ -124,6 +166,12 @@ public class PlayerJumping : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        // DOWN
         Gizmos.DrawWireSphere(rb.transform.position + Vector3.down * downOffset, rayCircleRadius);
+        // LEFT
+        Gizmos.DrawWireSphere(rb.transform.position + Vector3.left * sidesOffset, rayCircleRadius);
+        // RIGHT
+        Gizmos.DrawWireSphere(rb.transform.position + Vector3.right * sidesOffset, rayCircleRadius);
     }
+
 }

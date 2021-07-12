@@ -76,7 +76,7 @@ public class Hit : MonoBehaviour
             if (player == null) player = other.GetComponentInParent<PlayerController>();
             if (player != null && !other.CompareTag("Weapon"))
             {
-                
+                Debug.Log(gameObject.name + " HITTING " + other.gameObject.name);
                 player.Hit(knockTime, damage);
             }
 
