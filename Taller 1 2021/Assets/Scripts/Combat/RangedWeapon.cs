@@ -75,7 +75,7 @@ public class RangedWeapon : PlayerWeapon
             float randomRotation = Random.Range(-maxAccAngle, maxAccAngle);
             rotatedDirection = RotateVector(rotatedDirection, randomRotation);
 
-            newProjectile.GetComponent<Projectile>().Launch(rotatedDirection, gameObject.tag, gameObject.layer);
+            newProjectile.GetComponent<Projectile>().Launch(rotatedDirection, gameObject.tag);
         }
 
         // Aplicar el recoil al player

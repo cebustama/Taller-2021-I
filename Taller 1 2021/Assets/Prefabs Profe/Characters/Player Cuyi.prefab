@@ -307,6 +307,7 @@ GameObject:
   - component: {fileID: 2469098519191554611}
   - component: {fileID: 7548615706284205516}
   - component: {fileID: 2469098519191554610}
+  - component: {fileID: 6992897889098889098}
   m_Layer: 6
   m_Name: Player Cuyi
   m_TagString: Player
@@ -396,6 +397,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96dd57d7cdf2bb743b30189d2aeb5b22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  useAnimator: 1
   currentState: 0
   controlType: 1
   movementType: 0
@@ -499,6 +501,20 @@ CapsuleCollider2D:
   m_Offset: {x: -0.026052237, y: -0.36}
   m_Size: {x: 0.72, y: 0.37}
   m_Direction: 1
+--- !u!114 &6992897889098889098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2469098519191554617}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ced27c8570b80704a8f77c2cd3611a1a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentFireType: {fileID: 0}
+  aimType: 2
 --- !u!1 &2469098519221905011
 GameObject:
   m_ObjectHideFlags: 0

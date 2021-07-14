@@ -15,11 +15,11 @@ public class PlayerWeapon : MonoBehaviour
     private void Start()
     {
         throwingHit = GetComponent<Hit>();
-        throwingHit.activated = false;
+        if (throwingHit != null) throwingHit.activated = false;
 
         rb = GetComponent<Rigidbody2D>();
 
-        throwCollider.enabled = false;
+        if (throwCollider != null) throwCollider.enabled = false;
     }
 
     public virtual void Update()
@@ -31,8 +31,8 @@ public class PlayerWeapon : MonoBehaviour
             {
                 rb.velocity = Vector2.zero;
                 thrown = false;
-                throwingHit.activated = false;
-                throwCollider.enabled = false;
+                if (throwingHit != null) throwingHit.activated = false;
+                if (throwCollider != null) throwCollider.enabled = false;
             }
         }
     }
@@ -64,7 +64,7 @@ public class PlayerWeapon : MonoBehaviour
         {
             rb.velocity = force;
 
-            throwingHit.activated = true;
+            if (throwingHit != null) throwingHit.activated = true;
 
             thrown = true;
 
@@ -74,6 +74,6 @@ public class PlayerWeapon : MonoBehaviour
 
     public void EnableCollider()
     {
-        throwCollider.enabled = true;
+        if (throwCollider != null) throwCollider.enabled = true;
     }
 }
