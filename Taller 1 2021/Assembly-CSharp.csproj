@@ -59,7 +59,7 @@
     <Compile Include="Assets\Scripts\Player\PlayerController.cs" />
     <Compile Include="Assets\Scripts\Attributes\BulletAttribute.cs" />
     <Compile Include="Assets\Scripts\Enemies\Enemy.cs" />
-    <Compile Include="Assets\PlayerContainer.cs" />
+    <Compile Include="Assets\Scripts\PlayerContainer.cs" />
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\AnchorSnap\AnchorSnap.cs" />
     <Compile Include="Assets\Scripts\BridgeLayer.cs" />
@@ -74,7 +74,7 @@
     <Compile Include="Assets\Scripts\Movement\FollowTarget.cs" />
     <Compile Include="Assets\Scripts\Movement\AutoMove.cs" />
     <Compile Include="Assets\Scripts\CheckIfUnlocked.cs" />
-    <Compile Include="Assets\EnemySpawn.cs" />
+    <Compile Include="Assets\Scripts\EnemySpawn.cs" />
     <Compile Include="Assets\Scripts\Movement\CameraFollow2.cs" />
     <Compile Include="Assets\Scripts\Conditions\Actions\DestroyAction.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\Enums.cs" />
@@ -106,6 +106,7 @@
     <Compile Include="Assets\Scripts\Movement\AutoRotate.cs" />
     <Compile Include="Assets\Scripts\Fade.cs" />
     <Compile Include="Assets\Scripts\Conditions\ConditionRepeat.cs" />
+    <Compile Include="Assets\Scripts\ExplodeOnDistance.cs" />
     <Compile Include="Assets\Scripts\Mecanismo.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerGun.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\UserInterface\UIScript.cs" />
@@ -115,7 +116,7 @@
     <Compile Include="Assets\Scripts\Status Effects\PoisonStatus.cs" />
     <Compile Include="Assets\Scripts\Conditions\Actions\DialogueBalloonAction.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\BaseClasses\Physics2DObject.cs" />
-    <Compile Include="Assets\EnemyRoom.cs" />
+    <Compile Include="Assets\Scripts\EnemyRoom.cs" />
     <Compile Include="Assets\Scripts\Attributes\CollectableAttribute.cs" />
     <Compile Include="Assets\Scripts\ChangeSceneTimer.cs" />
     <Compile Include="Assets\Scripts\Gameplay\ObjectShooter.cs" />
@@ -147,7 +148,6 @@
     <Compile Include="Assets\Scripts\MainMenuClase.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PauseManagerClase.cs" />
-    <Compile Include="Assets\ExplodeOnDistance.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

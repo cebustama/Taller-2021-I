@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class TurretEnemy : Enemy
 {
-    public Transform target;
     public GameObject projectile;
 
     public float fireRadius;

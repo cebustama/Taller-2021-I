@@ -34,6 +34,8 @@ public enum MovimientoPermitido
 
 public class PlayerController : MonoBehaviour
 {
+    public bool useAnimator = true;
+
     public PlayerState currentState;
 
     [Header("Move Settings")]
@@ -210,25 +212,28 @@ public class PlayerController : MonoBehaviour
 
     private void ManageAnimation()
     {
-        // El personaje se está moviendo
-        if (movement != Vector2.zero)
+        if (useAnimator)
         {
-            animator?.SetBool("moving", true);
-
-            // Dar vuelta el sprite al caminar a la izquierda
-            playerRenderer.flipX = false;
-            if (flipLeft && movement.x < 0)
+            // El personaje se está moviendo
+            if (movement != Vector2.zero)
             {
-                playerRenderer.flipX = true;
-            }
+                animator?.SetBool("moving", true);
 
-            animator?.SetFloat("moveX", change.x);
-            animator?.SetFloat("moveY", change.y);
-        }
-        // El personaje NO se está moviendo
-        else
-        {
-            animator?.SetBool("moving", false);
+                // Dar vuelta el sprite al caminar a la izquierda
+                playerRenderer.flipX = false;
+                if (flipLeft && movement.x < 0)
+                {
+                    playerRenderer.flipX = true;
+                }
+
+                animator?.SetFloat("moveX", change.x);
+                animator?.SetFloat("moveY", change.y);
+            }
+            // El personaje NO se está moviendo
+            else
+            {
+                animator?.SetBool("moving", false);
+            }
         }
     }
 

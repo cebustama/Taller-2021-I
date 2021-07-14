@@ -61,7 +61,7 @@ public class Enemy : MonoBehaviour
         homePosition = transform.position;
         health = maxHealth;
 
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        target = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
 
     private void OnEnable()
@@ -73,6 +73,8 @@ public class Enemy : MonoBehaviour
 
     private void Update()
     {
+        if (target == null) return;
+
         Vector2 diff = (target.position - transform.position);
         Vector2 targetDirection = diff.normalized;
         float targetDistance = diff.magnitude;
@@ -169,9 +171,12 @@ public class Enemy : MonoBehaviour
 
     public void Hit(Rigidbody2D myRigidbody, float knockTime, float damage)
     {
-        Debug.Log("Soy " + enemyName + " y me están atacando " + damage);
-        StartCoroutine(KnockCo(myRigidbody, knockTime));
-        TakeDamage(damage);
+        if (gameObject.activeSelf)
+        {
+            Debug.Log("Soy " + enemyName + " y me están atacando " + damage);
+            StartCoroutine(KnockCo(myRigidbody, knockTime));
+            TakeDamage(damage);
+        }
     }
 
     IEnumerator KnockCo(Rigidbody2D myRigidbody, float knockTime)

@@ -26,6 +26,8 @@ public class Hit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
+        Debug.Log(gameObject.name + " colisión detectada con " + other.gameObject.name + " (activated: " + activated + ")");
+
         if (!activated) return;
 
         // Ignore hit for tag exceptions
