@@ -76,6 +76,7 @@
     <Compile Include="Assets\Scripts\CheckIfUnlocked.cs" />
     <Compile Include="Assets\Scripts\EnemySpawn.cs" />
     <Compile Include="Assets\Scripts\Movement\CameraFollow2.cs" />
+    <Compile Include="Assets\Scripts\Scriptable Objects\FireType.cs" />
     <Compile Include="Assets\Scripts\Conditions\Actions\DestroyAction.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\Enums.cs" />
     <Compile Include="Assets\Scripts\Combat\RangedWeapon.cs" />
@@ -99,6 +100,7 @@
     <Compile Include="Assets\Scripts\Camera\CameraPostProcessing.cs" />
     <Compile Include="Assets\Scripts\Movement\Rotate.cs" />
     <Compile Include="Assets\Scripts\RotateTowardsMouse.cs" />
+    <Compile Include="Assets\Scripts\Gameplay\Powerup.cs" />
     <Compile Include="Assets\Scripts\Status Effects\StatusEffect.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PlayerShooter.cs" />
     <Compile Include="Assets\Scripts\Combat\Hit.cs" />
@@ -145,11 +147,9 @@
     <Compile Include="Assets\Scripts\Combat\PlayerWeapon.cs" />
     <Compile Include="Assets\Scripts\Attributes\HealthSystemAttribute.cs" />
     <Compile Include="Assets\Scripts\Conditions\ConditionResource.cs" />
-    <Compile Include="Assets\Scripts\MainMenuClase.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PauseManagerClase.cs" />
-    <Compile Include="Assets\Scripts\Scriptable Objects\FireType.cs" />
-    <Compile Include="Assets\Scripts\Gameplay\Powerup.cs" />
+    <Compile Include="Assets\Scripts\CinemachineShake.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
