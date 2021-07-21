@@ -3,6 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using UnityEngine.UI;
+
 public enum PlayerState
 {
     walk,
@@ -372,9 +374,13 @@ public class PlayerController : MonoBehaviour
     {
         if (currentState != PlayerState.stagger)
         {
-            Debug.Log("PLAYER HIT");
+            //Debug.Log("PLAYER HIT");
 
             currentHealth -= damage;
+
+            // Actualizar la barra de vida
+            if (UserInterface.instance != null) UserInterface.instance.playerHealthBar.fillAmount = currentHealth / maxHealth;
+
             if (currentHealth > 0)
             {
                 StartCoroutine(KnockCo(knockTime));

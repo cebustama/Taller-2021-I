@@ -80,6 +80,7 @@
     <Compile Include="Assets\Scripts\Conditions\Actions\DestroyAction.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\Enums.cs" />
     <Compile Include="Assets\Scripts\Combat\RangedWeapon.cs" />
+    <Compile Include="Assets\Scripts\Dialogo.cs" />
     <Compile Include="Assets\Scripts\Conditions\ConditionCollision.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\UserInterface\DialogueSystem.cs" />
     <Compile Include="Assets\Scripts\Gameplay\PickUpAndHold.cs" />
@@ -152,7 +153,8 @@
     <Compile Include="Assets\Scripts\Conditions\ConditionResource.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PauseManagerClase.cs" />
-    <Compile Include="Assets\Scripts\Dialogo.cs" />
+    <Compile Include="Assets\UserInterface.cs" />
+    <Compile Include="Assets\Interactable.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
