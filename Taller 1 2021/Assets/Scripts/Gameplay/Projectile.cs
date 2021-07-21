@@ -7,7 +7,8 @@ public class Projectile : MonoBehaviour
 {
     [Header("Projectile Settings")]
     public float moveSpeed;
-    public Vector2 directionToMove;
+    public float rotateSpeed = 0f;
+    private Vector2 directionToMove;
 
     [Header("Lifetime")]
     public float lifetime;
@@ -40,7 +41,9 @@ public class Projectile : MonoBehaviour
         if (rb == null) rb = GetComponent<Rigidbody2D>();
 
         rb.velocity = initialVel * moveSpeed;
+        rb.angularVelocity = rotateSpeed;
 
+        // Detección de colisiones
         if (tagException != "")
         {
             hit = GetComponent<Hit>();
@@ -74,12 +77,12 @@ public class Projectile : MonoBehaviour
         //Debug.Log(other.name);
 
         // Solo destruir con el player
-        PlayerController player = other.GetComponent<PlayerController>();
+        /*PlayerController player = other.GetComponent<PlayerController>();
         Enemy enemy = other.GetComponent<Enemy>();
         if (player != null || enemy != null || other.gameObject.layer == LayerMask.NameToLayer("Collisions"))
         {
             if (destroyEffect != null) Instantiate(destroyEffect, transform.position, Quaternion.identity);
             Destroy(gameObject);
-        }
+        }*/
     }
 }

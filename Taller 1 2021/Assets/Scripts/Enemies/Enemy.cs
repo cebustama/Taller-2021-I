@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
     public float shootingRate = 1f;
     private float shootingTimer;
     public GameObject bulletPrefab;
+    public LineRenderer lineRenderer;
 
     [Header("Effects")]
     public GameObject deathEffect;
@@ -69,11 +70,18 @@ public class Enemy : MonoBehaviour
         transform.position = homePosition;
         health = maxHealth;
         currentState = EnemyState.idle;
+
+        // Solo si tiene un line render asignado
+        if (lineRenderer != null) StartCoroutine(LineRendererCo());
     }
 
     private void Update()
     {
-        if (target == null) return;
+        if (target == null || !target.gameObject.activeSelf)
+        {
+            showLine = false;
+            return;
+        }
 
         Vector2 diff = (target.position - transform.position);
         Vector2 targetDirection = diff.normalized;
@@ -120,6 +128,8 @@ public class Enemy : MonoBehaviour
 
             if (shootingTimer <= 0)
             {
+                showLine = false;
+
                 Projectile p = Instantiate(bulletPrefab).GetComponent<Projectile>();
 
                 // Position del proyectil
@@ -135,6 +145,47 @@ public class Enemy : MonoBehaviour
         }
 
         ManageAnimation(targetDirection);
+    }
+
+    public bool showLine = true;
+    private IEnumerator LineRendererCo()
+    {
+        float minWidth = lineRenderer.startWidth;
+        Color startColor = lineRenderer.startColor;
+        Color endColor = lineRenderer.endColor;
+
+        while (true)
+        {
+            if (showLine)
+            {
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, target.position);
+
+                if (shootingTimer <= shootingRate * .15f)
+                {
+                    // FLASH WHITE
+                    lineRenderer.startColor = Color.white;
+                    lineRenderer.endColor = Color.white;
+                }
+            }
+            else
+            {
+                // Invisible
+                lineRenderer.startColor = new Color(startColor.r, startColor.g, startColor.b, 0);
+                lineRenderer.endColor = new Color(endColor.r, endColor.g, endColor.b, 0);
+                yield return new WaitForSeconds(shootingRate * .25f);
+
+                if (target != null && target.gameObject.activeSelf)
+                {
+                    // Visible
+                    showLine = true;
+                    lineRenderer.startColor = new Color(startColor.r, startColor.g, startColor.b, 1);
+                    lineRenderer.endColor = new Color(endColor.r, endColor.g, endColor.b, 1);
+                }
+            }
+
+            yield return null;
+        }  
     }
 
     public IEnumerator AttackCo()
@@ -191,6 +242,7 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
     public void StatusEffect(StatusEffect fx)
     {
         // Lentitud
@@ -234,13 +286,13 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void OnDrawGizmos()
+    private void OnDrawGizmosSelected()
     {
         //Gizmos.color = Color.red;
         //Gizmos.DrawWireSphere(transform.position, followDistance);
 
-        //Gizmos.color = Color.yellow;
-        //Gizmos.DrawWireSphere(transform.position, shootingDistance);
+        Gizmos.color = Color.yellow;
+        Gizmos.DrawWireSphere(transform.position, shootingDistance);
 
         //Gizmos.color = Color.cyan;
         //Gizmos.DrawWireSphere(transform.position, attackDistance);

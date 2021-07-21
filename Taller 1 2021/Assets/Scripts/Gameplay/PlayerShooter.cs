@@ -78,8 +78,22 @@ public class PlayerShooter : MonoBehaviour
         if (isShooting && fireTimer <= 0)
         {
             fireTimer =  1 / currentFireType.rateOfFire;
-            GameObject newProjectile = Instantiate(currentFireType.projectilePrefab, transform.position, Quaternion.identity);
-            newProjectile.GetComponent<Projectile>().Launch(direction, gameObject.tag, gameObject.layer);
+            //GameObject newProjectile = Instantiate(currentFireType.projectilePrefab, transform.position, Quaternion.identity);
+            //newProjectile.GetComponent<Projectile>().Launch(direction, gameObject.tag, gameObject.layer);
+
+            float facingRotation = Mathf.Atan2(direction.y, direction.x);
+            float startRotation = facingRotation + currentFireType.projectileSpreadAngle / 2f;
+            float angleIncrease = currentFireType.projectileSpreadAngle / (currentFireType.projectileAmount - 1f);
+
+            for (int i = 0; i < currentFireType.projectileAmount; i++)
+            {
+                float currentRotation = startRotation - angleIncrease * i;
+                Vector2 currentDirection = Quaternion.AngleAxis(currentRotation, Vector3.back) * direction;
+                GameObject newProjectile = Instantiate(currentFireType.projectilePrefab, transform.position, 
+                    Quaternion.Euler(0f, 0f, facingRotation * Mathf.Rad2Deg));
+                newProjectile.GetComponent<Projectile>().Launch(currentDirection.normalized, gameObject.tag, gameObject.layer);
+            }
+
         }
     }
 

@@ -107,6 +107,7 @@
     <Compile Include="Assets\Scripts\Combat\Hit.cs" />
     <Compile Include="Assets\Scripts\Attributes\DestroyForPointsAttribute.cs" />
     <Compile Include="Assets\Scripts\Movement\AutoRotate.cs" />
+    <Compile Include="Assets\Scripts\TurnOffAfterTime.cs" />
     <Compile Include="Assets\Scripts\Fade.cs" />
     <Compile Include="Assets\Scripts\Conditions\ConditionRepeat.cs" />
     <Compile Include="Assets\Scripts\ExplodeOnDistance.cs" />
@@ -151,7 +152,7 @@
     <Compile Include="Assets\Scripts\Conditions\ConditionResource.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PauseManagerClase.cs" />
-    <Compile Include="Assets\Scripts\TurnOffAfterTime.cs" />
+    <Compile Include="Assets\Scripts\Dialogo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

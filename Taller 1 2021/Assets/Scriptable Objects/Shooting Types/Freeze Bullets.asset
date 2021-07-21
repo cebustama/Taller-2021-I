@@ -16,3 +16,5 @@ MonoBehaviour:
   projectilePrefab: {fileID: 595103619410661216, guid: 4d24f8700a0773740993efcec47ec686,
     type: 3}
   rateOfFire: 1
+  projectileAmount: 1
+  projectileSpreadAngle: 0
