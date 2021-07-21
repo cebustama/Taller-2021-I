@@ -53,7 +53,10 @@ public class Projectile : MonoBehaviour
         {
             gameObject.layer = layerException;
             hit = GetComponent<Hit>();
-            hit.layerHitFilterList.Add(layerException);
+            if (hit != null)
+            {
+                hit.layerHitFilterList.Add(layerException);
+            }
         }
     }
 

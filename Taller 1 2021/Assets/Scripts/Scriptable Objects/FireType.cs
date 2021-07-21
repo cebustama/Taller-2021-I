@@ -1,5 +1,13 @@
 using UnityEngine;
 
+public enum ShootingType
+{
+    click,
+    hold,
+    release,
+    charge
+}
+
 [CreateAssetMenu]
 public class FireType : ScriptableObject
 {

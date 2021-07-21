@@ -143,6 +143,7 @@
     <Compile Include="Assets\Scripts\Conditions\ConditionArea.cs" />
     <Compile Include="Assets\Scripts\Conditions\Actions\CreateObjectAction.cs" />
     <Compile Include="Assets\Scripts\TimedDeactivate.cs" />
+    <Compile Include="Assets\Scripts\OnDestroyOrDeactivate.cs" />
     <Compile Include="Assets\Scripts\ScrollingBackground.cs" />
     <Compile Include="Assets\Scripts\Attributes\ResourceAttribute.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerWeapon.cs" />
@@ -150,7 +151,7 @@
     <Compile Include="Assets\Scripts\Conditions\ConditionResource.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PauseManagerClase.cs" />
-    <Compile Include="Assets\OnDestroyOrDeactivate.cs" />
+    <Compile Include="Assets\Scripts\TurnOffAfterTime.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

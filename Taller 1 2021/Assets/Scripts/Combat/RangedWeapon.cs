@@ -2,14 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum ShootingType
-{
-    click,
-    hold,
-    release,
-    charge
-}
-
 public class RangedWeapon : PlayerWeapon
 {
     public ShootingType shootingType;

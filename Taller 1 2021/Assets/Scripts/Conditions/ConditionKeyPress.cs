@@ -15,7 +15,8 @@ public class ConditionKeyPress : ConditionBase
 
 	private float timeLastEventFired;
 
-
+	public float keyPressCooldown = 0f;
+	private float keyPressTimer = 0f;
 
 
 	private void Start()
@@ -23,22 +24,26 @@ public class ConditionKeyPress : ConditionBase
 		timeLastEventFired = -frequency;
 	}
 
-
-
-
 	private void Update()
 	{
+		if (keyPressTimer > 0)
+        {
+			keyPressTimer -= Time.deltaTime;
+        }
+
 		switch(eventType)
 		{
 			case KeyEventTypes.JustPressed:
-				if(Input.GetKeyDown(keyToPress))
+				if(Input.GetKeyDown(keyToPress) && keyPressTimer <= 0f)
 				{
+					keyPressTimer = keyPressCooldown;
 					ExecuteAllActions(null);
 				}
 				break;
 			case KeyEventTypes.Released:
-				if(Input.GetKeyUp(keyToPress))
+				if(Input.GetKeyUp(keyToPress) && keyPressTimer <= 0)
 				{
+					keyPressTimer = keyPressCooldown;
 					ExecuteAllActions(null);
 				}
 				break;
