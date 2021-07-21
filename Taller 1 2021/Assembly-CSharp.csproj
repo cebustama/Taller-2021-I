@@ -89,12 +89,14 @@
     <Compile Include="Assets\Scripts\Conditions\Actions\OnOffAction.cs" />
     <Compile Include="Assets\Scripts\Conditions\Actions\LoadLevelAction.cs" />
     <Compile Include="Assets\Scripts\Movement\Wander.cs" />
+    <Compile Include="Assets\Scripts\Interactable.cs" />
     <Compile Include="Assets\Scripts\Scriptable Objects\PlayerAudioclips.cs" />
     <Compile Include="Assets\Scripts\CinemachineShake.cs" />
     <Compile Include="Assets\Scripts\Enemies\TurretEnemy.cs" />
     <Compile Include="Assets\Scripts\Movement\Move.cs" />
     <Compile Include="Assets\Scripts\Movement\CameraFollow.cs" />
     <Compile Include="Assets\Scripts\ScreenShakeManager.cs" />
+    <Compile Include="Assets\Scripts\UserInterface.cs" />
     <Compile Include="Assets\Scripts\PauseManager.cs" />
     <Compile Include="Assets\_INTERNAL_\Scripts\Utilities\Utils.cs" />
     <Compile Include="Assets\Scripts\Conditions\Actions\TeleportAction.cs" />
@@ -153,8 +155,7 @@
     <Compile Include="Assets\Scripts\Conditions\ConditionResource.cs" />
     <Compile Include="Assets\Scripts\Combat\PlayerAttack.cs" />
     <Compile Include="Assets\Scripts\PauseManagerClase.cs" />
-    <Compile Include="Assets\UserInterface.cs" />
-    <Compile Include="Assets\Interactable.cs" />
+    <Compile Include="Assets\Scripts\PlayerDash.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

@@ -7,7 +7,9 @@ public class UserInterface : MonoBehaviour
 {
     public static UserInterface instance;
 
+    [Header("Player Stats")]
     public Image playerHealthBar;
+    public Image playerStaminaWheel;
 
     [Header("Textos")]
     public GameObject textWindow;

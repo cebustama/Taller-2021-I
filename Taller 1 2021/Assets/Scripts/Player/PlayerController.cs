@@ -73,7 +73,7 @@ public class PlayerController : MonoBehaviour
     public FlipDirection flipXAnimation = FlipDirection.NONE;
 
     SpriteRenderer playerRenderer;
-    Animator animator;
+    public Animator animator;
     public Collider2D playerCollider;
 
     Vector2 colliderCenterPosition;
@@ -89,10 +89,12 @@ public class PlayerController : MonoBehaviour
 
     public Rigidbody2D rb;
 
-    [Header("Health")]
+    [Header("Stats")]
     public float startingHealth = 10;
-    float maxHealth;
-    float currentHealth;
+    float maxHealth, currentHealth;
+    public float startingStamina = 100;
+    float maxStamina, currentStamina;
+    public float staminaRegenSpeed = 10f;
 
     [Header("Colliders Ataque")]
     public Collider2D colliderArriba;
@@ -117,10 +119,20 @@ public class PlayerController : MonoBehaviour
         // Health
         maxHealth = startingHealth;
         currentHealth = maxHealth;
+
+        // Stamina
+        maxStamina = startingStamina;
+        currentStamina = maxStamina;
     }
+
 
     void Update()
     {
+        // Regeneración stamina
+        currentStamina += staminaRegenSpeed * Time.deltaTime;
+        currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
+        UserInterface.instance.playerStaminaWheel.fillAmount = currentStamina / maxStamina;
+
         colliderCenterPosition = playerCollider.bounds.center;
 
         if (movementType == MovementType.TILED)
@@ -239,7 +251,8 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    Vector2 change;
+    [HideInInspector]
+    public Vector2 change;
     private void ManageFreeMovement()
     {
         change = Vector2.zero;
@@ -439,5 +452,19 @@ public class PlayerController : MonoBehaviour
 
         equippedWeapon.Throw(dir * throwForce);
         DropEquippedWeapon();
+    }
+
+    public bool UseStamina(int amount)
+    {
+        // Solamente si tenemos suficiente stamina
+        if (currentStamina - amount >= 0)
+        {
+            currentStamina -= amount;
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

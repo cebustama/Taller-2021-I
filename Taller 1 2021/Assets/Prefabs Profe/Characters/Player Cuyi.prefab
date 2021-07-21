@@ -86,6 +86,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   angleOffset: -90
+--- !u!1 &2066750194955674041
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 901740748657264301}
+  - component: {fileID: 587047321678614295}
+  m_Layer: 6
+  m_Name: Player Abilities
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &901740748657264301
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066750194955674041}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2469098519191554621}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &587047321678614295
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2066750194955674041}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6be762bf58580224f9fa2c453b9155fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 2469098519191554623}
+  force: 3
+  speedThreshold: 5
+  staminaUse: 50
+  cooldown: 0
+  useAnimator: 0
 --- !u!1 &2469098517915415052
 GameObject:
   m_ObjectHideFlags: 0
@@ -330,6 +379,7 @@ Transform:
   - {fileID: 5020709552392963246}
   - {fileID: 618098030}
   - {fileID: 979791167213403238}
+  - {fileID: 901740748657264301}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -412,13 +462,17 @@ MonoBehaviour:
     m_Bits: 0
   equippedWeapon: {fileID: 0}
   flipXAnimation: 0
+  animator: {fileID: 0}
   playerCollider: {fileID: 0}
   rb: {fileID: 0}
   startingHealth: 10
+  startingStamina: 100
+  staminaRegenSpeed: 50
   colliderArriba: {fileID: 2469098519282404755}
   colliderAbajo: {fileID: 2469098518653634034}
   colliderDerecha: {fileID: 2469098518104986210}
   colliderIzquierda: {fileID: 2469098519221905009}
+  change: {x: 0, y: 0}
 --- !u!50 &2469098519191554622
 Rigidbody2D:
   serializedVersion: 4
