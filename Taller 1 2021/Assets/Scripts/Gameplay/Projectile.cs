@@ -9,6 +9,7 @@ public class Projectile : MonoBehaviour
     public float moveSpeed;
     public float rotateSpeed = 0f;
     private Vector2 directionToMove;
+    public AudioClip sound;
 
     [Header("Lifetime")]
     public float lifetime;
@@ -60,6 +61,14 @@ public class Projectile : MonoBehaviour
             {
                 hit.layerHitFilterList.Add(layerException);
             }
+        }
+
+        // Si tiene asignado un sonido, lo reproduce
+        if (sound != null)
+        {
+            AudioSource source = gameObject.AddComponent<AudioSource>();
+            source.pitch = Random.Range(0.9f, 1.1f);
+            source.PlayOneShot(sound);
         }
     }
 

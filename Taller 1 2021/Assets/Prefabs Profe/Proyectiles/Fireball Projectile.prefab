@@ -100,7 +100,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 30
-  directionToMove: {x: 0, y: 0}
+  rotateSpeed: 0
+  sound: {fileID: 8300000, guid: d654222bad356084b9107a3be7ad0eeb, type: 3}
   lifetime: 2
   destroyEffect: {fileID: 0}
 --- !u!50 &3979582736336220111

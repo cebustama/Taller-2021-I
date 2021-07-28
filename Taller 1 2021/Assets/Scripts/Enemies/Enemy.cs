@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public enum EnemyState
 {
@@ -18,6 +19,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Enemy Settings")]
     public bool useAnimator = true;
+    public Image healthBar;
     public int maxHealth;
     [SerializeField] private float health;
 
@@ -42,6 +44,10 @@ public class Enemy : MonoBehaviour
     public GameObject bulletPrefab;
     public LineRenderer lineRenderer;
 
+    [Header("Apunta en direccion custom")]
+    public bool overwriteDirection = false;
+    public Vector2 customDirection;
+
     [Header("Effects")]
     public GameObject deathEffect;
     private float deathEffectDeathTime = 1f;
@@ -61,6 +67,7 @@ public class Enemy : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         homePosition = transform.position;
         health = maxHealth;
+        UpdateHealthBar();
 
         target = GameObject.FindGameObjectWithTag("Player")?.transform;
     }
@@ -69,6 +76,7 @@ public class Enemy : MonoBehaviour
     {
         transform.position = homePosition;
         health = maxHealth;
+        UpdateHealthBar();
         currentState = EnemyState.idle;
 
         // Solo si tiene un line render asignado
@@ -85,6 +93,7 @@ public class Enemy : MonoBehaviour
 
         Vector2 diff = (target.position - transform.position);
         Vector2 targetDirection = diff.normalized;
+        Vector2 finalDirection = (overwriteDirection) ? customDirection : targetDirection;
         float targetDistance = diff.magnitude;
 
         // Attack
@@ -136,15 +145,15 @@ public class Enemy : MonoBehaviour
                 p.transform.position = transform.position;
 
                 // Rotacion del proyectil
-                float angle = Vector2.SignedAngle(Vector2.down, targetDirection);
+                float angle = Vector2.SignedAngle(Vector2.down, finalDirection);
                 p.transform.localEulerAngles = new Vector3(0, 0, angle);
 
-                p.Launch(targetDirection, layerException: gameObject.layer);
+                p.Launch(finalDirection, layerException: gameObject.layer);
                 shootingTimer = shootingRate;
             }
         }
 
-        ManageAnimation(targetDirection);
+        ManageAnimation(finalDirection);
     }
 
     public bool showLine = true;
@@ -209,6 +218,13 @@ public class Enemy : MonoBehaviour
             DeathEffect();
             this.gameObject.SetActive(false);
         }
+
+        UpdateHealthBar();
+    }
+
+    private void UpdateHealthBar()
+    {
+        if (healthBar != null) healthBar.fillAmount = (health / maxHealth);
     }
 
     private void DeathEffect()
