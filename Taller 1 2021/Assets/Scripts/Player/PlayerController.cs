@@ -131,7 +131,10 @@ public class PlayerController : MonoBehaviour
         // Regeneración stamina
         currentStamina += staminaRegenSpeed * Time.deltaTime;
         currentStamina = Mathf.Clamp(currentStamina, 0f, maxStamina);
-        UserInterface.instance.playerStaminaWheel.fillAmount = currentStamina / maxStamina;
+
+        if (UserInterface.instance != null) 
+            if (UserInterface.instance.playerStaminaWheel != null) 
+                UserInterface.instance.playerStaminaWheel.fillAmount = currentStamina / maxStamina;
 
         colliderCenterPosition = playerCollider.bounds.center;
 
@@ -389,10 +392,7 @@ public class PlayerController : MonoBehaviour
         {
             //Debug.Log("PLAYER HIT");
 
-            currentHealth -= damage;
-
-            // Actualizar la barra de vida
-            if (UserInterface.instance != null) UserInterface.instance.playerHealthBar.fillAmount = currentHealth / maxHealth;
+            DamagePlayer(damage);
 
             if (currentHealth > 0)
             {
@@ -403,6 +403,30 @@ public class PlayerController : MonoBehaviour
                 this.gameObject.SetActive(false);
             }
         }
+    }
+
+    const float fallDamage = 10f;
+    public void Fall()
+    {
+        DamagePlayer(fallDamage);
+        animator.SetBool("falling", true);
+        currentState = PlayerState.stagger;
+    }
+
+    public void FinishFall()
+    {
+        animator.SetBool("falling", false);
+        currentState = PlayerState.idle;
+    }
+
+    public void DamagePlayer(float amount)
+    {
+        // Resto la vida
+        currentHealth -= amount;
+        // Limito la vida entre 0 y la vida máxima
+        currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
+
+        if (UserInterface.instance != null) UserInterface.instance.playerHealthBar.fillAmount = currentHealth / maxHealth;
     }
 
     IEnumerator KnockCo(float knockTime)

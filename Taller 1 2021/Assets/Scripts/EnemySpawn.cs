@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemySpawn : MonoBehaviour
 {
-    public GameObject enemyPrefab;
+    public GameObject[] enemyPrefabs;
 
     public float spawnTime = 1f;
     private float spawnTimer = 0f;
@@ -39,7 +39,8 @@ public class EnemySpawn : MonoBehaviour
             Random.Range(spawnCollider.bounds.min.x, spawnCollider.bounds.max.x),
             Random.Range(spawnCollider.bounds.min.y, spawnCollider.bounds.max.y));
 
-        GameObject newEnemy = Instantiate(enemyPrefab, randomPosition, Quaternion.identity, transform);
+        GameObject newEnemy = Instantiate(enemyPrefabs[Random.Range(0, enemyPrefabs.Length)], 
+            randomPosition, Quaternion.identity, transform);
 
         if (parentRoom != null) parentRoom.enemies.Add(newEnemy);
 

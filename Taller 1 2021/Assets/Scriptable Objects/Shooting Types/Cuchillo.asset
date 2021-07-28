@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f7b5018324ed5054193169794ee2ae3c, type: 3}
-  m_Name: Libro
+  m_Name: Cuchillo
   m_EditorClassIdentifier: 
   shootingType: 1
-  projectilePrefab: {fileID: 8444144150501786196, guid: a0767229807d8d3499d1619b2b2a223f,
+  projectilePrefab: {fileID: 2906940149009554065, guid: 5ad25c04a0adff148b19b8f838ae75e8,
     type: 3}
-  rateOfFire: 1
-  ammoCost: 0
+  rateOfFire: 5
+  ammoCost: 1
   projectileAmount: 1
   projectileSpreadAngle: 0
-  projectileSprite: {fileID: 0}
+  projectileSprite: {fileID: 21300000, guid: 9c99904a151b20646bb718c53ae3a74c, type: 3}

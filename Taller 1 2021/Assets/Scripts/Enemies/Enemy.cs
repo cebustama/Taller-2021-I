@@ -224,7 +224,7 @@ public class Enemy : MonoBehaviour
     {
         if (gameObject.activeSelf)
         {
-            Debug.Log("Soy " + enemyName + " y me están atacando " + damage);
+            //Debug.Log("Soy " + enemyName + " y me están atacando " + damage);
             StartCoroutine(KnockCo(myRigidbody, knockTime));
             TakeDamage(damage);
         }
@@ -277,8 +277,8 @@ public class Enemy : MonoBehaviour
         if (movement != Vector2.zero)
         {
             animator?.SetBool("moving", true);
-            animator?.SetFloat("moveX", movement.x);
-            animator?.SetFloat("moveY", movement.y);
+            //animator?.SetFloat("moveX", movement.x);
+            //animator?.SetFloat("moveY", movement.y);
         }
         else
         {

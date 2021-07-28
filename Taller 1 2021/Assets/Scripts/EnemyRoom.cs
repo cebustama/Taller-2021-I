@@ -1,6 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+
+using UnityEngine.SceneManagement;
 
 public class EnemyRoom : MonoBehaviour
 {
@@ -10,6 +13,12 @@ public class EnemyRoom : MonoBehaviour
 
     [Header("Door Objects")]
     public List<GameObject> doors;
+
+    [Header("Custom Events")]
+    public bool loadLevelOnComplete = false;
+    public int nextLevelIndex = 0;
+
+    public UnityEvent onComplete;
 
     private bool doorsOpen = true;
 
@@ -26,7 +35,13 @@ public class EnemyRoom : MonoBehaviour
         // Ya no quedan enemigos, abrir las puertas
         if (enemiesAlive <= 0 && !doorsOpen)
         {
+            onComplete?.Invoke();
             OpenDoors();
+
+            if (loadLevelOnComplete)
+            {
+                SceneManager.LoadScene(nextLevelIndex);
+            }
         }
     }
 

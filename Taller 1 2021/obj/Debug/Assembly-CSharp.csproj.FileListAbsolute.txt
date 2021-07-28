@@ -1,0 +1,2 @@
+C:\Github Desktop\Taller-2021-I\Taller 1 2021\obj\Debug\Assembly-CSharp.csprojAssemblyReference.cache
+C:\Github Desktop\Taller-2021-I\Taller 1 2021\obj\Debug\Assembly-CSharp.csproj.CoreCompileInputs.cache

@@ -26,7 +26,7 @@ public class Hit : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        Debug.Log(gameObject.name + " colisión detectada con " + other.gameObject.name + " (activated: " + activated + ")");
+        //Debug.Log(gameObject.name + " colisión detectada con " + other.gameObject.name + " (activated: " + activated + ")");
 
         if (!activated) return;
 
@@ -78,7 +78,7 @@ public class Hit : MonoBehaviour
             if (player == null) player = other.GetComponentInParent<PlayerController>();
             if (player != null && !other.CompareTag("Weapon"))
             {
-                Debug.Log(gameObject.name + " HITTING " + other.gameObject.name);
+                //Debug.Log(gameObject.name + " HITTING " + other.gameObject.name);
                 player.Hit(knockTime, damage);
             }
 

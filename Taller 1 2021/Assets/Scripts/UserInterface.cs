@@ -15,6 +15,11 @@ public class UserInterface : MonoBehaviour
     public GameObject textWindow;
     public TextMeshProUGUI textText;
 
+    [Header("Municiones")]
+    public GameObject municionesContainer;
+    public Image municionesSprite;
+    public TextMeshProUGUI municionesTexto;
+
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -29,5 +34,23 @@ public class UserInterface : MonoBehaviour
     public void HideText()
     {
         textWindow.SetActive(false);
+    }
+
+    public void ShowAmmo(Sprite proj, int amount)
+    {
+        municionesSprite.sprite = proj;
+        municionesTexto.text = (amount >= 0) ? amount.ToString() : "";
+
+        municionesContainer.SetActive(true);
+    }
+
+    public void HideAmmo()
+    {
+        municionesContainer.SetActive(false);
+    }
+
+    public void UpdateAmmo(int amount)
+    {
+        municionesTexto.text = amount.ToString();
     }
 }
